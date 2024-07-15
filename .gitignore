@@ -1,0 +1,12 @@
+
+# TO IGNORE Local .ENV FILES
+.env.local 
+.env.development.local
+.env.test.local
+.env.production.local
+
+
+./main
+./dist/
+
+.idea/
