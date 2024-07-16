@@ -1,0 +1,14 @@
+version: "2"
+sql:
+  - engine: "mysql"
+    queries: "database/queries"
+    schema: "database/migrations"
+    gen:
+      go:
+        package: "repository"
+        out: "database/repository"
+        emit_prepared_queries: true
+
+
+    rules:
+      - no-context

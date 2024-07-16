@@ -1,7 +1,10 @@
-# include .env
-# include .env.local
-# export $(shell sed 's/=.*//' .env)
-# export $(shell sed 's/=.*//' .env.local)
+ include .env
+ include .env.local
+ export $(shell sed 's/=.*//' .env)
+ export $(shell sed 's/=.*//' .env.local)
+
+run-cli:
+	go run ./cli/main.go
 
 run: 
 	CompileDaemon -command="./main" -include="*.html"
@@ -18,6 +21,16 @@ build:
 	GOOS=windows GOARCH=arm64 go build -o ./dist/windows-arm64 ./main.go 
 	GOOS=windows GOARCH=amd64 go build -o ./dist/windows-amd64 ./main.go 
 
+generate:
+	sqlc generate
+
+migration:
+	migrate create -ext sql -dir database/migrations -seq $(name)
+migrate-up:
+	migrate -path database/migrations -database "$(DB_DRIVER)://$(DB_DSN)" -verbose up
+
+migrate-down:
+	migrate -path database/migrations -database "$(DB_DRIVER)://$(DB_DSN)" -verbose down 1
 
 analyze:
 	gocloc .
