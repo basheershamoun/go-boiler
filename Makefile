@@ -16,10 +16,10 @@ build:
 	mkdir ./dist/darwin-amd64
 	mkdir ./dist/windows-arm64
 	mkdir ./dist/windows-amd64
-	GOOS=linux GOARCH=amd64 go build -o ./dist/linux-amd64 ./main.go 
-	GOOS=darwin GOARCH=amd64 go build -o ./dist/darwin-amd64 ./main.go
-	GOOS=windows GOARCH=arm64 go build -o ./dist/windows-arm64 ./main.go 
-	GOOS=windows GOARCH=amd64 go build -o ./dist/windows-amd64 ./main.go 
+	GOOS=linux GOARCH=amd64 go build -o ./dist/linux-amd64 ./cmd/web/main.go
+	GOOS=darwin GOARCH=amd64 go build -o ./dist/darwin-amd64 ./cmd/web/main.go
+	GOOS=windows GOARCH=arm64 go build -o ./dist/windows-arm64 ./cmd/web/main.go
+	GOOS=windows GOARCH=amd64 go build -o ./dist/windows-amd64 ./cmd/web/main.go
 
 generate:
 	sqlc generate
